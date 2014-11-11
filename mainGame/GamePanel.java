@@ -33,8 +33,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	//Constructor
 	
 	private int spawnAmount = 3;
-	public int spawnLevel = 1;
 	private int numLives = 2;
+	private int currentRound = 1;
+	public int spawnLevel = 1;
+	
 	
 	
 	
@@ -129,13 +131,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.BLACK);
+		
 		//g.drawString("FPS: " + averageFPS, 10, 10);
 		g.drawString("Multiplier: " + round(scoreMultiplier, 1), 10, 10);
 		//g.drawString("Number of bullets: " + bullets.size(), 10, 25);
 		g.drawString("Score: " + ((int) score), 10, 25);
-		
+		g.drawString("Level " + currentRound, 10, 40);
 		if(numLives < 0){
-			g.drawString("GAME OVER", 10, 40);
+			g.drawString("GAME OVER", 10, 55);
 		}
 		//draw Player
 		
@@ -165,10 +168,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		
 		//Level increase
 		if(enemies.size() < 3){
+			
 			scoreMultiplier += 0.3;
 			spawnAmount++;
+			
 			if(spawnAmount % 5 == 1){
+				
+				currentRound++;
 				spawnLevel++;
+				
 				if(spawnAmount > 14){
 					spawnAmount = 3;
 				}

@@ -19,8 +19,8 @@ public class Life {
 		
 		spacing++;
 		
-		x = 10 * spacing;
-		y = 30;
+		x = 9 * spacing;
+		y = 45;
 		r = 5;
 		
 		color3 = Color.RED;
