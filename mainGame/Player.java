@@ -41,11 +41,15 @@ public class Player {
 		firingTimer = System.nanoTime();
 		firingDelay = 200;
 		
+		
 	}
 	
 	public double getx(){return x;}
 	public double gety(){return y;}
 	public double getr(){return r;}
+	public Rectangle getBounds() {
+		return new Rectangle((int) x, (int) y, r * 2, r * 2);
+	}
 	public boolean isAlive(){ return alive; }
 	
 	

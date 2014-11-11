@@ -5,6 +5,8 @@ public class Enemy {
 	double x;
 	double y;
 	int r;
+	int width;
+	int height;
 	
 	double dx;
 	double dy;
@@ -35,14 +37,14 @@ public class Enemy {
 			color1 = Color.RED;
 			
 			speed = 4 * rank /2;
-			r = 4 + rank;
+			r = 5 + rank;
 			health = 1 * rank;
 			score = health;
 		}
 		else{
 			color1 = Color.black;
 			
-			speed = 4 * rank /2;
+			speed = 5 * rank /2;
 			r = 4 + rank;
 			health = 1 * rank;
 			score = health;
@@ -59,6 +61,8 @@ public class Enemy {
 		
 		ready = false;
 		dead = false;
+		width = 2 * r;
+		height = width;
 	}
 	
 	//Functions
@@ -66,6 +70,9 @@ public class Enemy {
 	public double getx() { return x; }
 	public double gety() { return y; }
 	public double getr() { return r; }
+	public Rectangle getBounds() {
+		return new Rectangle((int) x, (int) y, width, height);
+	}
 	public boolean isDead() { return dead; }
 	
 	
@@ -107,7 +114,7 @@ public class Enemy {
 	    
 		g.setStroke(new BasicStroke(3));
 		g.setColor(color1);
-		g.drawRect((int) (x), (int) (y), 2 * r, 2 * r);
+		g.drawRect((int) (x), (int) (y), width, height);
 		g.setStroke(new BasicStroke(1));
 	}
 	

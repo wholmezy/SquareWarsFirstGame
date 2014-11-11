@@ -35,6 +35,9 @@ public class Bullet {
 	
 	public double getx() { return x; }
 	public double gety() { return y; }
+	public Rectangle getBounds() {
+		return new Rectangle((int) x, (int) y, r * 2, r * 2);
+	}
 	public double getr() { return r; }
 	
 	public boolean update(){

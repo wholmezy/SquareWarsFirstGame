@@ -199,6 +199,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		//bullet-enemy collision
 		for(int i = 0; i < bullets.size(); i++){
 			Bullet b = bullets.get(i);
+			Rectangle r1 = b.getBounds();
 			double bx = b.getx();
 			double by = b.gety();
 			double br = b.getr();
@@ -206,6 +207,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			
 			for(int j = 0; j < enemies.size(); j++){
 				Enemy e = enemies.get(j);
+				Rectangle r2 = e.getBounds();
 				double ex = e.getx();
 				double ey = e.gety();
 				double er = e.getr();
@@ -214,7 +216,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				double dy = by - ey;
 				double dist = Math.sqrt(dx * dx + dy * dy);
 				
-				if(dist < br + er){
+				if(r1.intersects(r2)){
 					e.hit();
 					bullets.remove(i);
 					i--;
@@ -228,22 +230,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		// enemy-player collision
 		for(int i = 0; i < enemies.size(); i++){
 			Enemy e = enemies.get(i);
-			double ex = e.getx();
-			double ey = e.gety();
-			double er = e.getr();
+			Rectangle r1 = e.getBounds();
 			
 			Player p = player;
-			
-			double px = p.getx();
-			double py = p.gety();
-			double pr = p.getr();
-			
-			double dx = ex - px;
-			double dy = ey - py;
-			double dist = Math.sqrt(dx * dx + dy * dy);
+			Rectangle r2 = p.getBounds();
 			
 			
-			if(dist < pr + er && player.isAlive()){
+			if(r1.intersects(r2) && player.isAlive()){
 				enemies.remove(i);
 				if(numLives >= 0){
 					scoreMultiplier = 1;
